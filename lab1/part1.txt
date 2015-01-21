@@ -1,0 +1,2 @@
+expected mean = 1/lambda
+expected var = 1/lambda^2
