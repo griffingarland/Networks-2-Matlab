@@ -12,6 +12,7 @@ clear time1 framesize1
 %%%%%%%%%%%%%%%%%%%%%%%%%Exercise %%%3.2%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %The following code will generate Plot 1; You generate Plot2 , Plot3.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Part 3.3.1
 figure(1);
 jj=1;
 i=1;
@@ -28,12 +29,12 @@ jj=jj+1;
 end
 i=i+1;
 end
-%%%%%%%%
 subplot(3,1,1);bar(bytes_p);
 title('Amount of data per second');
 ylabel('Bytes');
 xlabel('Time (s)');
 
+%Part 3.3.2
 jj=1;
 i=1;
 initial_p=20;
@@ -49,13 +50,13 @@ jj=jj+1;
 end
 i=i+1;
 end
-%%%%%%%%
 subplot(3,1,2);bar(bytes_p2);
 set(gca, 'XTickLabel',{20,22,24,26,28,30,'N/A'})
 title('Amount of data per .1 second');
 ylabel('Bytes');
 xlabel('Time (s)');
 
+%Part 3.3.3
 jj=1;
 i=1;
 initial_p=90;
@@ -71,14 +72,13 @@ jj=jj+1;
 end
 i=i+1;
 end
-%%%%%%%%
 subplot(3,1,3);bar(bytes_p3);
 set(gca, 'XTickLabel',{90,90.2,90.4,90.6,90.8,91,'N/A'})
 title('Amount of data per .01 seconds');
 ylabel('Bytes');
 xlabel('Time (s)');
 
-
+%Part 3.2
 disp('num packets');
 disp(numel(framesize));
 disp('total number of bytes');
@@ -92,11 +92,12 @@ disp(peakrate);
 disp('peak to mean bitrate');
 disp(peakrate/averagerate);
 
-%3.2
+%Part 3.2.1
 figure(2);
 title('packet size as a function of time');
 bar(time,framesize);
 
+%Part 3.2.2
 figure(4)
 hist(framesize,100000);
 title('Relative frequency of Packet Size');
