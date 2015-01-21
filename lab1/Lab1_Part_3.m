@@ -30,6 +30,54 @@ i=i+1;
 end
 %%%%%%%%
 subplot(3,1,1);bar(bytes_p);
+title('Amount of data per second');
+ylabel('Bytes');
+xlabel('Time (s)');
+
+jj=1;
+i=1;
+initial_p=20;
+ag_time=.1;
+bytes_p2=zeros(1,100);
+while time(jj)<=initial_p
+    jj=jj+1;
+end
+while i<=100
+while ((time(jj)-initial_p)<=ag_time*i && jj<no_entries)
+bytes_p2(i)=bytes_p2(i)+framesize(jj);
+jj=jj+1;
+end
+i=i+1;
+end
+%%%%%%%%
+subplot(3,1,2);bar(bytes_p2);
+set(gca, 'XTickLabel',{20,22,24,26,28,30,'N/A'})
+title('Amount of data per .1 second');
+ylabel('Bytes');
+xlabel('Time (s)');
+
+jj=1;
+i=1;
+initial_p=90;
+ag_time=.01;
+bytes_p3=zeros(1,100);
+while time(jj)<=initial_p
+    jj=jj+1;
+end
+while i<=100
+while ((time(jj)-initial_p)<=ag_time*i && jj<no_entries)
+bytes_p3(i)=bytes_p3(i)+framesize(jj);
+jj=jj+1;
+end
+i=i+1;
+end
+%%%%%%%%
+subplot(3,1,3);bar(bytes_p3);
+set(gca, 'XTickLabel',{90,90.2,90.4,90.6,90.8,91,'N/A'})
+title('Amount of data per .01 seconds');
+ylabel('Bytes');
+xlabel('Time (s)');
+
 
 disp('num packets');
 disp(numel(framesize));
