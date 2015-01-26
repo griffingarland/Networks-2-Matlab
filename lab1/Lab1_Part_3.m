@@ -82,9 +82,10 @@ xlabel('Time (s)');
 disp('num packets');
 disp(numel(framesize));
 disp('total number of bytes');
-disp(sum(framesize));
+sumframesize=sum(framesize);
+disp(sumframesize);
 disp('mean bit rate');
-averagerate=mean(framesize./diff([0.0; time]));
+averagerate=sumframesize/time(end);
 disp(averagerate);
 disp('max bit rate');
 peakrate=max(framesize./diff([0.0; time]));
@@ -94,8 +95,10 @@ disp(peakrate/averagerate);
 
 %Part 3.2.1
 figure(2);
-title('packet size as a function of time');
 bar(time,framesize);
+title('packet size as a function of time');
+ylabel('Time (s)');
+xlabel('Packet Size (Bytes)');
 
 %Part 3.2.2
 figure(4)

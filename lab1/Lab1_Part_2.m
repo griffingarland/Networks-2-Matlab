@@ -124,7 +124,7 @@ disp((largest/mean_time)/(mean(avg_size)/mean_time));
 
 
 %part 2.2 1
-figure(2);
+figure(8);
 plot(index,framesize_f);
 title('Frame size as a function of sequence number');
 ylabel('Size of frame');
@@ -145,7 +145,7 @@ figure(5);
 hist(framesize_I,3375);
 title('Relative frequency of I frame by Size');
 labels=[0,.0006,.0012,.0018,.0024,.003,.0036];
-%set(gca,'YTickLabel',labels);
+set(gca,'YTickLabel',labels);
 ylabel('Relative frequency');
 xlabel('Size of I frame (Bytes)');
 
@@ -153,7 +153,7 @@ figure(6);
 hist(framesize_B,40497);
 title('Relative frequency of B frame by Size');
 labels=[0,.0005,.001,.0015,.002,.0025,.003];
-%set(gca,'YTickLabel',labels);
+set(gca,'YTickLabel',labels);
 ylabel('Relative frequency');
 xlabel('Size of B frame (Bytes)');
 

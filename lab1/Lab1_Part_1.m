@@ -1,4 +1,4 @@
-clc;clear all;
+clc;clear all; clf;
 format long g;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Reading data from a file

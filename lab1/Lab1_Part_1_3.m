@@ -1,4 +1,5 @@
-
+clc;clear all;
+format long g;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Reading data from a file
 %Note that time is in micro seconds and packetsize is in Bytes
