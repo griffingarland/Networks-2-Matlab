@@ -7,5 +7,6 @@
 <listEntry value="1"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="sender.Sender"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="128.100.13.136 “My String”"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="lab2a"/>
 </launchConfiguration>
