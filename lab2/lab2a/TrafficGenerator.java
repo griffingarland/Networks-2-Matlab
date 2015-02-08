@@ -12,7 +12,6 @@ public class TrafficGenerator {
 			/*
 			 * Open input file as a BufferedReader
 			 */ 
-	    	// TODO Open Poisson traffic file (in the lab handout link, download and rename here
 			File fin = new File("poisson3.txt"); 
 			FileReader fis = new FileReader(fin);  
 			bis = new BufferedReader(fis);  
@@ -37,7 +36,6 @@ public class TrafficGenerator {
 				float time 	= Float.parseFloat(col2);
 				int size 	= Integer.parseInt(col3);
 				
-				// TODO Send UDP packets
 				// Make up our own data buffer for UDP packet?
 				byte [] buf = {0}; // initialized to zeros by default					
 				InetAddress addr = InetAddress.getByName(args[0]);
