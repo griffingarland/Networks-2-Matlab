@@ -32,7 +32,7 @@ class ReadFileWriteFile {
 			/*
 			 * Open input file as a BufferedReader
 			 */ 
-			File fin = new File("data.txt"); 
+			File fin = new File("movietrace.txt"); 
 			FileReader fis = new FileReader(fin);  
 			bis = new BufferedReader(fis);  
 			
@@ -67,11 +67,11 @@ class ReadFileWriteFile {
 				/*
 				 *  Display content of file 
 				 */
-				System.out.println("SeqNo:  " + SeqNo); 
+				/*System.out.println("SeqNo:  " + SeqNo); 
 				System.out.println("Frame time:   " + Ftime); 
 				System.out.println("Frame type:        " + Ftype); 
 				System.out.println("Frame size:       " + Fsize + "\n"); 
-				
+				*/
 				
 				/*
 				 *  Write line to output file 
