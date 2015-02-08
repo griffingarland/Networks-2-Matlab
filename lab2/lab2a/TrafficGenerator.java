@@ -1,14 +1,13 @@
 import java.io.*;
 import java.net.*;
-
+import java.util.StringTokenizer;
+import java.lang.Thread;
 public class TrafficGenerator {
 	public static void main(String[] args) throws IOException {
-	    InetAddress addr = InetAddress.getByName(args[0]);
-	    byte[]      buf  = args[1].getBytes();
-	    DatagramPacket packet = new DatagramPacket(buf, buf.length, addr, 4444);
-	    DatagramSocket socket = new DatagramSocket();
-	    socket.send(packet);
 	    
+		BufferedReader bis = null; 
+		String currentLine = null; 
+		PrintStream pout = null;
 	    try {  
 			/*
 			 * Open input file as a BufferedReader
@@ -38,17 +37,18 @@ public class TrafficGenerator {
 				float time 	= Float.parseFloat(col2);
 				int size 	= Integer.parseInt(col3);
 				
-				
-				/*
-				 *  Display content of file 
-				 */
-//				System.out.println("SeqNo:  " + SeqNo); 
-//				System.out.println("Frame time:   " + Ftime); 
-//				System.out.println("Frame type:        " + Ftype); 
-//				System.out.println("Frame size:       " + Fsize + "\n"); 
-
-				// TODO Re-scale the values
 				// TODO Send UDP packets
+				// Make up our own data buffer for UDP packet?
+				byte [] buf; // initialized to zeros by default					
+				InetAddress addr = InetAddress.getByName(args[0]);
+			    DatagramPacket packet = new DatagramPacket(buf, size, addr, 4444);
+			    DatagramSocket socket = new DatagramSocket();
+			    // simulate delay
+			    if (SeqNo > 1)
+			    	java.lang.Thread.sleep(time/1000);
+				socket.send(packet);
+				
+				
 			} 
 		} catch (IOException e) {  
 			// catch io errors from FileInputStream or readLine()  
