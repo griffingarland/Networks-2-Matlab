@@ -39,14 +39,18 @@ public class TrafficGenerator {
 				
 				// TODO Send UDP packets
 				// Make up our own data buffer for UDP packet?
-				byte [] buf; // initialized to zeros by default					
+				byte [] buf = {0}; // initialized to zeros by default					
 				InetAddress addr = InetAddress.getByName(args[0]);
 			    DatagramPacket packet = new DatagramPacket(buf, size, addr, 4444);
 			    DatagramSocket socket = new DatagramSocket();
 			    // simulate delay
-			    if (SeqNo > 1)
-			    	java.lang.Thread.sleep(time/1000);
-				socket.send(packet);
+			    long prevTime = System.currentTimeMillis();
+			    if(SeqNo > 1){
+				    while((int) System.currentTimeMillis() - prevTime < time){
+				    	// Keep looping
+				    }
+			    }
+			    socket.send(packet);
 				
 				
 			} 
