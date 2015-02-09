@@ -7,5 +7,5 @@ all:
 	mv Bucket.class TokenBucket
 	mv TokenBucketReceiver.class TokenBucket
 clean:
-	rm *.class
-
+	rm -f *.class
+	rm -rf TokenBucket
