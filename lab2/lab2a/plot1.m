@@ -1,7 +1,7 @@
 clc; clear all; clf;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Reading data from a file
-%Note that time is in micro seconds and packetsize is in Bytes
+% Time unit: micro seconds 
+% Packet size: bytes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [packet_no_gen, time_gen, packetsize_gen] = textread('poisson3.txt', '%f %f %f');
 [packet_no_sink, time_sink, packetsize_sink] = textread('sink.txt', '%f %f %f');
@@ -39,11 +39,11 @@ end
 figure(1); 
 plot(time_gen, cumulative_gen, time_sink, cumulative_sink);
 
-hleg1 = legend('Poisson', 'Received');
+hleg1 = legend('Trace data', 'Output data');
 
 set(hleg1, 'Location', 'NorthWest');
 
-title('Poisson data vs Received data');
+title('Trace file vs Output file');
 
 xlabel('Arrival time (usec)');
 

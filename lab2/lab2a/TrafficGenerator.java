@@ -53,8 +53,11 @@ public class TrafficGenerator {
 			    	prevTime = time;
 			    }
 			    
-			    //System.out.println("seq:" + SeqNo + "---" + time);
-			    socket.send(packet);
+			    System.out.println("seq:" + SeqNo + "---" + time);
+			    //socket.send(packet);
+			    MyRunnable myRunnable = new MyRunnable(packet, socket);
+		        Thread t = new Thread(myRunnable);
+		        t.start();
 				
 				
 			} 
