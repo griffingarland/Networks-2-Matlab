@@ -3,19 +3,20 @@ import java.net.*;
 import java.util.StringTokenizer;
 import java.lang.Thread;
 public class TrafficGenerator {
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 	    
 		BufferedReader bis = null; 
 		String currentLine = null; 
-		PrintStream pout = null;
-	    try {  
+		try {  
 			/*
 			 * Open input file as a BufferedReader
 			 */ 
 			File fin = new File("poisson3.txt"); 
 			FileReader fis = new FileReader(fin);  
 			bis = new BufferedReader(fis);  
-			
+			int counter = 1;
+			float timeDiff = 0;
+			float prevTime = 0;
 			/*
 			 *  Read file line-by-line until the end of the file 
 			 */
@@ -37,17 +38,22 @@ public class TrafficGenerator {
 				int size 	= Integer.parseInt(col3);
 				
 				// Make up our own data buffer for UDP packet?
-				byte [] buf = {0}; // initialized to zeros by default					
+				byte [] buf = new byte[size];					
 				InetAddress addr = InetAddress.getByName(args[0]);
 			    DatagramPacket packet = new DatagramPacket(buf, size, addr, 4444);
 			    DatagramSocket socket = new DatagramSocket();
 			    // simulate delay
-			    long prevTime = System.currentTimeMillis();
-			    if(SeqNo > 1){
-				    while((int) System.currentTimeMillis() - prevTime < time){
-				    	// Keep looping
-				    }
+			    if(SeqNo == 1)
+			    {
+			    	prevTime = time;
 			    }
+			    if(SeqNo != 1)
+			    {
+			    	Thread.sleep((long) ((time - prevTime) / 1000));
+			    	prevTime = time;
+			    }
+			    
+			    //System.out.println("seq:" + SeqNo + "---" + time);
 			    socket.send(packet);
 				
 				
@@ -60,7 +66,6 @@ public class TrafficGenerator {
 			if (bis != null) { 
 				try { 
 					bis.close(); 
-					pout.close();
 				} catch (IOException e) { 
 					System.out.println("IOException: " +  e.getMessage());  
 				} 
