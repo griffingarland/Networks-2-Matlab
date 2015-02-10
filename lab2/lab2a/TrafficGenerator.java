@@ -11,7 +11,7 @@ public class TrafficGenerator {
 			/*
 			 * Open input file as a BufferedReader
 			 */ 
-			File fin = new File("movietrace.txt"); 
+			File fin = new File("ethernet2.txt"); 
 			FileReader fis = new FileReader(fin);  
 			bis = new BufferedReader(fis);  
 			int counter = 1;
