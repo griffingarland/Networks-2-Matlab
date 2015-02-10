@@ -43,21 +43,31 @@ public class TrafficGenerator {
 			    DatagramPacket packet = new DatagramPacket(buf, size, addr, 4444);
 			    DatagramSocket socket = new DatagramSocket();
 			    // simulate delay
+			    long start = System.nanoTime();
+			    
+			    
+			    
 			    if(SeqNo == 1)
 			    {
 			    	prevTime = time;
 			    }
 			    if(SeqNo != 1)
 			    {
-			    	Thread.sleep((long) ((time - prevTime) / 1000));
+			    	//Thread.sleep((long) ((time - prevTime) / 1000));
+			    	
+			    	do{
+			    		// nothing
+			    		counter++;
+			    	} while((System.nanoTime() - start) / 1000 < (time - prevTime));
 			    	prevTime = time;
 			    }
 			    
-			    System.out.println("seq:" + SeqNo + "---" + time);
-			    //socket.send(packet);
-			    MyRunnable myRunnable = new MyRunnable(packet, socket);
-		        Thread t = new Thread(myRunnable);
-		        t.start();
+			    System.out.println("seq:" + SeqNo + " time (us): " + time);
+			    socket.send(packet);
+			    //MyRunnable myRunnable = new MyRunnable(packet, socket);
+		            //Thread t = new Thread(myRunnable);
+		            //t.start();
+		            
 				
 				
 			} 

@@ -11,7 +11,6 @@ public class TrafficSink {
 		byte[] buf = new byte[1500];
 		DatagramPacket p = new DatagramPacket(buf, buf.length);
 		System.out.println("Waiting ..."); 
-
 		try {
  			// Open file
  			FileOutputStream fout =  new FileOutputStream("sink.txt");
