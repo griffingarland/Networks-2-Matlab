@@ -11,7 +11,7 @@ public class TrafficGenerator {
 			/*
 			 * Open input file as a BufferedReader
 			 */ 
-			File fin = new File("poisson3.txt"); 
+			File fin = new File("movietracespaces.data"); 
 			FileReader fis = new FileReader(fin);  
 			bis = new BufferedReader(fis);  
 			int counter = 1;
@@ -38,6 +38,11 @@ public class TrafficGenerator {
 				int size 	= Integer.parseInt(col3);
 				
 				// Make up our own data buffer for UDP packet?
+				int oldsize = 0;
+				if ( size > 64000 ) {
+					oldsize = size;
+					size = 64000;
+				}				
 				byte [] buf = new byte[size];					
 				InetAddress addr = InetAddress.getByName(args[0]);
 			    DatagramPacket packet = new DatagramPacket(buf, size, addr, 4444);
@@ -62,12 +67,25 @@ public class TrafficGenerator {
 			    	prevTime = time;
 			    }
 			    
-			    System.out.println("seq:" + SeqNo + " time (us): " + time);
+			  //  System.out.println("seq:" + SeqNo + " time (us): " + time);
 			    socket.send(packet);
 			    //MyRunnable myRunnable = new MyRunnable(packet, socket);
 		            //Thread t = new Thread(myRunnable);
 		            //t.start();
-		            
+		     	while(oldsize > 0) {
+					int size2 = 0;
+					if(oldsize > 64000)
+						size2 = 64000;
+					else
+						size2=oldsize;
+					byte [] buf_new = new byte[size];					
+					InetAddress addr_new = InetAddress.getByName(args[0]);
+				    DatagramPacket packet_new = new DatagramPacket(buf_new, size2, addr_new, 4444);
+				    DatagramSocket socket_new = new DatagramSocket();
+					oldsize -= 64000;
+			   	 	System.out.println("seq:" + SeqNo + " time (us): " + time + "oldsize: " + oldsize);
+			    	socket_new.send(packet_new);
+				}		
 				
 				
 			} 
