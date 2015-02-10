@@ -3,13 +3,13 @@ clc; clear all; clf;
 % Time unit: micro seconds 
 % Packet size: bytes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[packet_no_gen, time_gen, packetsize_gen] = textread('movietrace.txt', '%f %f %f');
+[packet_no_gen, time_gen, packetsize_gen] = textread('movietracespaces.data', '%f %f %f');
 [packet_no_sink, time_sink, packetsize_sink] = textread('sink.txt', '%f %f %f');
 [token_time_diff, token_size, test, test2] = textread('bucket.txt', '%f %f %f %f');
 
 count_gen = length(time_gen);
-count_sink = max(packet_no_sink);
-count_token = max(packet_no_gen);
+count_sink = length(packet_no_sink);
+count_token = length(packet_no_gen);
 
 % initialize cumulative arrays
 cumulative_gen = zeros(1, count_gen);

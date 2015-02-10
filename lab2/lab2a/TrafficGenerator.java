@@ -11,12 +11,15 @@ public class TrafficGenerator {
 			/*
 			 * Open input file as a BufferedReader
 			 */ 
-			File fin = new File("movietracespaces.data"); 
+			File fin = new File("movietrace.txt"); 
 			FileReader fis = new FileReader(fin);  
 			bis = new BufferedReader(fis);  
 			int counter = 1;
 			float timeDiff = 0;
 			float prevTime = 0;
+
+
+			    // simulate delay
 			/*
 			 *  Read file line-by-line until the end of the file 
 			 */
@@ -39,17 +42,17 @@ public class TrafficGenerator {
 				
 				// Make up our own data buffer for UDP packet?
 				int oldsize = 0;
-				if ( size > 64000 ) {
-					oldsize = size;
-					size = 64000;
+				if ( size > 1024 ) {
+					oldsize = size - 1024;
+					size = 1024;
 				}				
 				byte [] buf = new byte[size];					
 				InetAddress addr = InetAddress.getByName(args[0]);
 			    DatagramPacket packet = new DatagramPacket(buf, size, addr, 4444);
 			    DatagramSocket socket = new DatagramSocket();
 			    // simulate delay
-			    long start = System.nanoTime();
 			    
+			    long start = System.nanoTime();
 			    
 			    
 			    if(SeqNo == 1)
@@ -74,17 +77,14 @@ public class TrafficGenerator {
 		            //t.start();
 		     	while(oldsize > 0) {
 					int size2 = 0;
-					if(oldsize > 64000)
-						size2 = 64000;
+					if(oldsize > 1024)
+						size2 = 1024;
 					else
 						size2=oldsize;
-					byte [] buf_new = new byte[size];					
-					InetAddress addr_new = InetAddress.getByName(args[0]);
-				    DatagramPacket packet_new = new DatagramPacket(buf_new, size2, addr_new, 4444);
-				    DatagramSocket socket_new = new DatagramSocket();
-					oldsize -= 64000;
-			   	 	System.out.println("seq:" + SeqNo + " time (us): " + time + "oldsize: " + oldsize);
-			    	socket_new.send(packet_new);
+					byte [] buf_new = new byte[size2];					
+				    DatagramPacket packet_new = new DatagramPacket(buf_new, buf_new.length, addr, 4444);
+					oldsize -= 1024;
+			    	socket.send(packet_new);
 				}		
 				
 				

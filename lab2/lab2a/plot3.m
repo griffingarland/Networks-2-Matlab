@@ -14,9 +14,9 @@ count_token = max(packet_no_gen);
 % initialize cumulative arrays
 cumulative_gen = zeros(1, count_gen);
 cumulative_sink = zeros(1, count_sink);
-cumulative_token = zeros(1, count_gen);
+cumulative_token = zeros(1, count_sink);
 cumulative_time_sink = zeros(1, count_sink);
-cumulative_time_token = zeros(1, count_gen);
+cumulative_time_token = zeros(1, count_sink);
 
 % initialize first packet, hardcoded
 cumulative_gen(1) = packetsize_gen(1);
@@ -37,8 +37,8 @@ end
 % start with second packet
 i = 2;
 
-% for generator
-while i <= count_gen
+% for token bucket
+while i <= count_sink
     cumulative_token(i) = cumulative_token(i-1) + token_size(i);
     cumulative_time_token(i) = token_time_diff(i) + cumulative_time_token(i-1);
     i = i + 1;
@@ -55,14 +55,23 @@ end
 
 % Make plot
 figure(1); 
-plot(time_gen, cumulative_gen, cumulative_time_sink, cumulative_sink, cumulative_time_token, cumulative_token);
+%plot(cumulative_time_token, cumulative_token,time_gen, cumulative_gen,cumulative_time_sink, cumulative_sink);
 
-hleg1 = legend('Trace data', 'Output data', 'Token Bucket data');
-
-set(hleg1, 'Location', 'NorthWest');
-
-title('Trace file vs Output file');
-
+subplot(3,1,2);plot(cumulative_time_token, cumulative_token);
+title('Token Bucket Arrivals over time');
 xlabel('Arrival time (usec)');
+ylabel('Arrivals (bytes)');
+v=axis;
 
-ylabel('Cumulative arrival (bytes)');
+subplot(3,1,1);plot(time_gen, cumulative_gen);
+title('Trace file data sent over time');
+xlabel('Arrival time (usec)');
+ylabel('Arrival (bytes)');
+axis(v);
+
+subplot(3,1,3);plot(cumulative_time_sink, cumulative_sink);
+title('Sink Arrivals over time');
+xlabel('Arrival time (usec)');
+ylabel('Arrivals (bytes)');
+axis(v);
+
