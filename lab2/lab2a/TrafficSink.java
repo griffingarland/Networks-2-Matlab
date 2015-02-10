@@ -5,7 +5,7 @@ import java.util.*;
 public class TrafficSink {
 	public static void main(String[] args) throws IOException 
 	{
-		DatagramSocket socket = new DatagramSocket(4444);
+		DatagramSocket socket = new DatagramSocket(4445);
 		
 		PrintStream pout = null;
 		byte[] buf = new byte[1500];
