@@ -3,10 +3,13 @@ import java.util.*;
 import java.lang.*;
 import java.net.*;
 
+// Griffin Garland
+// Samprit Raihan
+
 // For every T msec we transmit a group of N packets, each with size L bytes
 // Rate = NL8/T bpS
 
-// Usage:
+// Usage, make first:
 // java TrafficGenerator [hostname] [T] [N] [L]
 // java TrafficGenerator localhost 1000 2 100
 
@@ -20,12 +23,11 @@ class TrafficGenerator {
     int L = Integer.parseInt(args[3]);
 
     try {  
-      // Get addr and output file
 	  InetAddress addr = InetAddress.getByName(hostname);
       FileOutputStream file_out = new FileOutputStream("output.txt");
       PrintStream print_out = new PrintStream(file_out);
 
-      // Create socket
+      // create a socket
       DatagramSocket socket = new DatagramSocket();
       int i = 0;
       int seq_no = 0;
