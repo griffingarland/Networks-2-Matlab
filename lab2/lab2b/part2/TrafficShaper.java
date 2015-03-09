@@ -4,11 +4,6 @@ import java.net.*;
 import java.lang.*;
 import TokenBucket.TokenBucket;
 
-/* 
- *  ECE466 Lab 2b - Part 2
- *  David Zhang 997480088
- */
-
 class TrafficShaper {  
   public static void main (String[] args) { 
     int experiment = Integer.parseInt(args[0]);
