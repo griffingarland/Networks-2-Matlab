@@ -8,66 +8,51 @@ class TrafficShaper {
   public static void main (String[] args) { 
     int experiment = Integer.parseInt(args[0]);
 
-    TokenBucket lb;
+    TokenBucket tb;
     if ( experiment == 1 ) {
-      /*
-       * This experiment runs these
-       * generator at 800kbps
-       * shaper at 2000kbps  
-       */
-      lb = new TokenBucket (4444,         // inPort"localhost",   
-                  "localhost",      // outAddress
-                  4445,         // outPort 
-                  100,          // maxPacketSize (bytes)
-                  100*100,        // bufferCapacity (bytes)
-                  100,          // bucketSize (num)
-                  250000,         // bucketRate (tokens/sec)
-                  "bucket_ex1.txt");  // fileName
-      new Thread(lb).start();
+      
+      tb = new TokenBucket (4444,    
+                  "localhost",  
+                  4445,  
+                  100,    
+                  100*100,     
+                  100, 
+                  250000,  
+                  "bucket_ex1.txt");
+      new Threadtlb).start();
 
     } else if ( experiment == 2 ) {
-      /*
-       * This experiment runs these
-       * generator at 800kbps
-       * shaper at 2000kbps  
-       */
-      lb = new TokenBucket (4444,         // inPort"localhost",   
-                  "localhost",      // outAddress
-                  4445,         // outPort 
-                  100,          // maxPacketSize (bytes)
-                  100*100,        // bufferCapacity (bytes)
-                  500,          // bucketSize (num)
-                  250000,         // bucketRate (tokens/sec)
-                  "bucket_ex2.txt");  // fileName
-      new Thread(lb).start();
+      
+      tb = new TokenBucket (4444,  
+                  "localhost", 
+                  4445,  
+                  100, 
+                  100*100, 
+                  500,  
+                  250000, 
+                  "bucket_ex2.txt");
+      new Thread(tb).start();
     } else if ( experiment == 3 ) {
-      /*
-       * This experiment runs these
-       * generator at 2000kpbs
-       * shaper at 2000kbps  
-       */
-      lb = new TokenBucket (4444,         // inPort"localhost",   
-                  "localhost",      // outAddress
-                  4445,         // outPort 
-                  100,          // maxPacketSize (bytes)
-                  100*100,        // bufferCapacity (bytes)
-                  10000,          // bucketSize (num)
-                  500000,         // bucketRate (tokens/sec)
-                  "bucket_ex3.txt");  // fileName
+      
+      tb = new TokenBucket (4444,   
+                  "localhost",  
+                  4445,  
+                  100,   
+                  100*100,       
+                  10000,   
+                  500000,   
+                  "bucket_ex3.txt"); 
       new Thread(lb).start();
     } else if ( experiment == 4 ) {
-      /*
-       * This experiment runs max
-       */
-      lb = new TokenBucket (4444,         // inPort"localhost",   
-                  "localhost",      // outAddress
-                  4445,         // outPort 
-                  100,          // maxPacketSize (bytes)
-                  100*100,        // bufferCapacity (bytes)
-                  500,          // bucketSize (num)
-                  250000,         // bucketRate (tokens/sec)
-                  "bucket_ex3.txt");  // fileName
-      new Thread(lb).start();
+      tb = new TokenBucket (4444, 
+                  "localhost",
+                  4445,
+                  100,
+                  100*100,
+                  500,
+                  250000,
+                  "bucket_ex3.txt");
+      new Thread(tb).start();
     }
   }  
 }
