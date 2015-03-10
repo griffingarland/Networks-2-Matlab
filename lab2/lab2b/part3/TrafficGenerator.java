@@ -24,7 +24,7 @@ class TrafficGenerator {
 
     try {  
 	  InetAddress addr = InetAddress.getByName(hostname);
-      File file = new File("poisson3.data");
+      File file = new File("ethernet_short.txt");
 	  FileReader file_in = new FileReader(file);
 	  BufferedReader buffer_in = new BufferedReader(file_in);
 	  FileOutputStream file_out = new FileOutputStream("output.txt");
@@ -35,12 +35,14 @@ class TrafficGenerator {
       //Start at 0th packet
 	  int seq_no = 0;
       long time_start = System.nanoTime();
-      long time_current = 0;
+      long time_begin = time_start;
+	  long time_current = 0;
       long time_elapsed = 0;
 	  long time_target;
 	  String line_in = null;
 	  int Fsize = 0;
 		int printsize = 0;
+		long target = 0;
 
       while (Fsize != 0 || (line_in = buffer_in.readLine()) != null) {
         for (int i = 0; i < N; i++) {
@@ -59,7 +61,7 @@ class TrafficGenerator {
 				
 			//Convert each element to desired data type 
 			int SeqNo2 	= Integer.parseInt(col1);
-			float t2 	= Float.parseFloat(col2);  
+			target = Integer.parseInt(col2);  
 			Fsize 	= Integer.parseInt(col3);
 			System.out.println("Reading " + SeqNo2);
 		}
@@ -77,8 +79,8 @@ class TrafficGenerator {
 		{
        		byte[] packet = new byte[Fsize];
 			printsize = Fsize;
-			Fsize = 0;
             p = new DatagramPacket(packet, Fsize, addr, port);
+			Fsize = 0;
 		}
 //		System.out.println("Fsize " + Fsize);
           socket.send(p);
@@ -95,7 +97,7 @@ class TrafficGenerator {
 		}
 
         // Now sleep for T msecs
-        time_target = time_start + T * 1000;
+        time_target = time_begin + target*1000;
         do{
           time_current = System.nanoTime();
         } while (time_target > time_current );
