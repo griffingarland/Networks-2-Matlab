@@ -82,7 +82,7 @@ public class TrafficGeneratorMovie {
 					wait_time = time_nano/N;
 				}
 				else {
-					wait_time = 12; //approx time to transmit 1480 bits at 15 MBps in ns
+					wait_time = 12330000; //approx time to transmit 1480 bits at 15 MBps in ns
 				}
 					long current_time;
 					float send_time = prevTime + wait_time;

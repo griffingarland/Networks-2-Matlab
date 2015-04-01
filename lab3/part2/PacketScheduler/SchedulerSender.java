@@ -1,11 +1,11 @@
 package PacketScheduler;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-
+import java.util.StringTokenizer;
 
 /**
  * Removes and sends packets from buffers to a given address and port.
@@ -94,6 +94,21 @@ public class SchedulerSender implements Runnable
 	 */
 	public void run()
 	{
+		long start_time = System.nanoTime();
+		PrintStream pout1 = null;
+			PrintStream pout2 = null;
+			PrintStream pout3 = null;
+		try {
+			FileOutputStream fout1 =  new FileOutputStream("scheduler1.txt");
+			pout1 = new PrintStream (fout1);
+			
+			FileOutputStream fout2 =  new FileOutputStream("scheduler2.txt");
+			pout2 = new PrintStream (fout2);
+
+	} catch (IOException e)	{
+		System.out.println("hi");
+	}
+			PrintStream[] out = {pout1, pout2};		
 		while(true)
 		{
 			DatagramPacket packet = null;	
@@ -114,13 +129,15 @@ public class SchedulerSender implements Runnable
 				 */
 				if ((packet = buffers[1].peek()) != null)
 				{
+					out[1].println((System.nanoTime() - start_time)/1000 + "\t" + packet.getLength() + "\t" + 2);
 					sendPacket(packet, startTime);
-					buffers[0].removePacket();
+					buffers[1].removePacket();
 				}
 				else if ((packet = buffers[0].peek()) != null)
 				{
+					out[0].println((System.nanoTime() - start_time)/1000 + "\t" + packet.getLength() + "\t" + 1);
 					sendPacket(packet, startTime);
-					buffers[1].removePacket();
+					buffers[0].removePacket();
 				}
 				else
 				{
