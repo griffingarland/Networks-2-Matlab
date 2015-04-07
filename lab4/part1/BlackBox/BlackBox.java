@@ -31,18 +31,19 @@ public class BlackBox implements Runnable
      * Size of the token bucket (in Bits).
      * Maximum allowed burst size.
      */
-    int bConstant = 3000;
+    int bConstant = 11840; 
+    //int bConstant = 3000;
     /**
      * Token generation rate for the token bucket (in Mbps).
      * Long-term transmission rate.
      * Value of -1 is equal to infinity.
      */
-    double RConstant = -1;
+	double RConstant = -1;
     /**
      * Constant traffic delay (in micro seconds).
      */
-    int TConstant = 0;
-    
+    int TConstant = 1000;
+    //int TConstant = 0;
     /**
      * Port number on which BlackBox listens for incoming traffic.
      */
